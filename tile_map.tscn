@@ -1,0 +1,166 @@
+[gd_scene load_steps=19 format=3 uid="uid://cxcta8g61wn36"]
+
+[ext_resource type="Texture2D" uid="uid://d2hdje6kacqas" path="res://emptytile.png" id="1_mh807"]
+[ext_resource type="Texture2D" uid="uid://1iouyamw205w" path="res://redbutton.png" id="2_ai35u"]
+[ext_resource type="Texture2D" uid="uid://bqnhp4fkok7v5" path="res://yellowbutton.png" id="3_kb15c"]
+[ext_resource type="Script" path="res://tile_map.cs" id="4_gt5ud"]
+[ext_resource type="Script" path="res://suggestiondropper.cs" id="5_ks4gv"]
+[ext_resource type="Texture2D" uid="uid://gfb07vka4lh2" path="res://6178721.jpg" id="6_ug4jo"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ya55"]
+texture = ExtResource("1_mh807")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hqvv5"]
+texture = ExtResource("2_ai35u")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2c4ok"]
+texture = ExtResource("3_kb15c")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ohbnm"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_0ya55")
+sources/1 = SubResource("TileSetAtlasSource_hqvv5")
+sources/2 = SubResource("TileSetAtlasSource_2c4ok")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o3jqc"]
+texture = ExtResource("2_ai35u")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b1w7n"]
+texture = ExtResource("3_kb15c")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_walmg"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_o3jqc")
+sources/1 = SubResource("TileSetAtlasSource_b1w7n")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ef8xn"]
+font_size = 48
+font_color = Color(1, 1, 0, 1)
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0.412152, 0.412152, 0.412152, 0.513726)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7i6qj"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_1tfrl"]
+font_size = 48
+font_color = Color(1, 0, 0, 1)
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0.412152, 0.412152, 0.412152, 0.513726)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fkop3"]
+font_size = 48
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0.412152, 0.412152, 0.412152, 0.513726)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_t3ibl"]
+font_size = 24
+
+[node name="TileMap" type="TileMap"]
+tile_set = SubResource("TileSet_ohbnm")
+rendering_quadrant_size = 64
+format = 2
+layer_0/name = "Board"
+layer_0/tile_data = PackedInt32Array(393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 458763, 0, 0, 524299, 0, 0, 393228, 0, 0, 458762, 0, 0, 524298, 0, 0, 524297, 0, 0, 458761, 0, 0, 458760, 0, 0, 524296, 0, 0, 458759, 0, 0, 458758, 0, 0, 524294, 0, 0, 524295, 0, 0, 458764, 0, 0, 524300, 0, 0, 327692, 0, 0, 262156, 0, 0, 262155, 0, 0, 327691, 0, 0, 262154, 0, 0, 327690, 0, 0, 327689, 0, 0, 262153, 0, 0, 327688, 0, 0, 262152, 0, 0, 262151, 0, 0, 327687, 0, 0, 327686, 0, 0, 262150, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0)
+layer_1/name = "played"
+layer_1/tile_data = PackedInt32Array()
+script = ExtResource("4_gt5ud")
+
+[node name="suggestionDropper" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_walmg")
+rendering_quadrant_size = 64
+format = 2
+script = ExtResource("5_ks4gv")
+
+[node name="YellowWins" type="Label" parent="."]
+visible = false
+offset_left = 369.0
+offset_right = 851.0
+offset_bottom = 107.0
+text = "Żółty gracz wygrywa!"
+label_settings = SubResource("LabelSettings_ef8xn")
+
+[node name="Label" type="Label" parent="YellowWins"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 53.0
+offset_right = 479.0
+offset_bottom = 118.0
+text = "Nacisnij [R] by zagrać od nowa"
+label_settings = SubResource("LabelSettings_7i6qj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RedWins" type="Label" parent="."]
+visible = false
+offset_left = 314.0
+offset_right = 906.0
+offset_bottom = 107.0
+text = "Czerwony gracz wygrywa!"
+label_settings = SubResource("LabelSettings_1tfrl")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="RedWins"]
+layout_mode = 0
+offset_left = -7.0
+offset_top = 53.0
+offset_right = 591.0
+offset_bottom = 118.0
+text = "Nacisnij [R] by zagrać od nowa"
+label_settings = SubResource("LabelSettings_7i6qj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Draw" type="Label" parent="."]
+visible = false
+offset_left = 314.0
+offset_right = 906.0
+offset_bottom = 107.0
+text = "Remis!"
+label_settings = SubResource("LabelSettings_fkop3")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Draw"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 52.0
+offset_right = 534.0
+offset_bottom = 117.0
+text = "Nacisnij [R] by zagrać od nowa"
+label_settings = SubResource("LabelSettings_7i6qj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.329158, 0.329158, 0.329158, 1)
+show_behind_parent = true
+light_mask = 2
+position = Vector2(587, 305)
+scale = Vector2(0.717818, 0.381969)
+texture = ExtResource("6_ug4jo")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1.0
+offset_top = 576.0
+offset_right = 1214.0
+offset_bottom = 647.0
+text = "Połącz cztery kropki, by wygrać!"
+label_settings = SubResource("LabelSettings_t3ibl")
+horizontal_alignment = 1
+vertical_alignment = 1
